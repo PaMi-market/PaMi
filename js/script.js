@@ -8,18 +8,16 @@
 // Solo copia y pega el bloque de ejemplo y edita los datos.
 
 const productos = [
-    /*
-    // EJEMPLO - Descomenta y copia este bloque para cada producto:
+
     {
         id: 1,
-        nombre: "Nombre del producto",
+        nombre: "Vestido",
         categoria: "ropa-estilo",  // Opciones: "ropa-estilo", "encargos-shein", "maquillaje", "accesorios"
         precio: "15.00",
-        descripcion: "Descripción breve del producto.",
-        imagen: "img/productos/ropa/mi-foto.jpg",
+        descripcion: "ejun vestido tu sae, pa verte to rika.",
+        imagen: "img/productos/ropa/vestido.jpg",
         whatsapp: "5356275010"  // Tu número de WhatsApp para este producto
     },
-    */
 ];
 
 // 📌 Función para filtrar productos por categoría
