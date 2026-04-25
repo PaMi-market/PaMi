@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaMi | Lo mereces todo 💜</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        /* Estilos generales - PaMi */
+        :root {
+            --morado: #7B2D8E;
+            --morado-claro: #A855F7;
+            --rosa-fondo: #FDF2F8;
+            --blanco: #FFFFFF;
+            --gris-oscuro: #1F2937;
+            --gris-medio: #6B7280;
+            --dorado: #F59E0B;
+            --whatsapp: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FAFAFA;
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+        }
+        
+        /* Barra superior de anuncio (muy sutil) */
+        .top-bar {
+            background: linear-gradient(135deg, var(--morado), var(--morado-claro));
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        .top-bar a {
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Encabezado principal */
+        .main-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: var(--morado);
+            margin: 0;
+        }
+        
+        .logo span {
+            display: block;
+            font-size: 12px;
+            color: var(--gris-medio);
+            font-weight: normal;
+        }
+        
+        .header-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--whatsapp);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .header-contact a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Navegación por categorías */
+        .nav-categorias {
+            background: white;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0 20px;
+        }
+        
+        .nav-categorias a {
+            display: inline-block;
+            padding: 12px 20px;
+            color: var(--gris-oscuro);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .nav-categorias a:hover,
+        .nav-categorias a.activo {
+            color: var(--morado);
+            border-bottom-color: var(--morado);
+        }
+        
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--rosa-fondo) 0%, #F3E8FF 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            color: var(--morado);
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--gris-medio);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero .btn-catalogo {
+            display: inline-block;
+            background: var(--morado);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .hero .btn-catalogo:hover {
+            background: var(--morado-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(123, 45, 142, 0.3);
+        }
+        
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Sección de categorías */
+        .seccion-titulo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .seccion-titulo h2 {
+            font-size: 28px;
+            color: var(--morado);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-titulo p {
+            color: var(--gris-medio);
+        }
+        
+        .grid-categorias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .categoria-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: var(--gris-oscuro);
+        }
+        
+        .categoria-card:hover {
+            border-color: var(--morado);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(123, 45, 142, 0.1);
+        }
+        
+        .categoria-icono {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .categoria-card h3 {
+            font-size: 20px;
+            color: var(--morado);
+            margin-bottom: 5px;
+        }
+        
+        .categoria-card p {
+            font-size: 14px;
+            color: var(--gris-medio);
+        }
+        
+        /* Grid de productos */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .producto-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .producto-imagen {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+        
+        .producto-info {
+            padding: 15px;
+        }
+        
+        .producto-categoria {
+            font-size: 12px;
+            color: var(--morado);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .producto-nombre {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 5px 0;
+            color: var(--gris-oscuro);
+        }
+        
+        .producto-precio {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--morado);
+        }
+        
+        .producto-descripcion {
+            font-size: 14px;
+            color: var(--gris-medio);
+            margin: 5px 0 15px;
+        }
+        
+        .btn-comprar {
+            display: block;
+            text-align: center;
+            background: var(--whatsapp);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-comprar:hover {
+            background: #1da851;
+        }
+        
+        /* Sección Sobre PaMi */
+        .sobre-pami {
+            background: var(--rosa-fondo);
+            padding: 60px 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .sobre-pami h2 {
+            color: var(--morado);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .sobre-pami p {
+            max-width: 700px;
+            margin: 0 auto 15px;
+            color: var(--gris-oscuro);
+            font-size: 16px;
+        }
+        
+        .info-contacto {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+        
+        .info-item strong {
+            display: block;
+            color: var(--morado);
+            margin-bottom: 5px;
+        }
+        
+        /* Banner de Adsterra (sutil) */
+        .ad-banner {
+            max-width: 728px;
+            margin: 40px auto;
+            text-align: center;
+            min-height: 90px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--gris-oscuro);
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--morado-claro);
+            text-decoration: none;
+        }
+        
+        /* Botón flotante de WhatsApp */
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-flotante:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Estado vacío */
+        .sin-productos {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gris-medio);
+        }
+        
+        .sin-productos .icono {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 28px; }
+            .header-container { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra superior -->
+    <div class="top-bar">
+        🚚 Envíos a toda La Habana | 📍 Recoge en Villa Panamericana o La Cujae
+    </div>
+
+    <!-- Encabezado -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="img/logo.png" alt="PaMi Logo">
+                <div>
+                    <h1>PaMi</h1>
+                    <span>Lo mereces todo 💜</span>
+                </div>
+            </div>
+            <div class="header-contact">
+                <a href="https://wa.me/5356275010" target="_blank">
+                    📲 Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+        
+        <!-- Navegación de categorías -->
+        <nav class="nav-categorias" id="nav-categorias">
+            <a href="#inicio" class="activo" onclick="filtrarCategoria('todas')">🏠 Todas</a>
+            <a href="#ropa" onclick="filtrarCategoria('ropa-estilo')">👗 Ropa y Estilo</a>
+            <a href="#shein" onclick="filtrarCategoria('encargos-shein')">📦 Encargos Shein</a>
+            <a href="#maquillaje" onclick="filtrarCategoria('maquillaje')">💄 Maquillaje</a>
+            <a href="#accesorios" onclick="filtrarCategoria('accesorios')">💍 Accesorios</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <h2>PaMi | Lo mereces todo 💜</h2>
+        <p>Encontrarás de todo un poco y todo para ti: ropa, zapatos, regalos, accesorios y prendas para cada estilo y ocasión. Calidad y buen gusto van primero.</p>
+        <a href="https://laventanita.ecopodar.com/t/pa-mi" target="_blank" class="btn-catalogo">🛍️ Ver catálogo completo</a>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        
+        <!-- Sección de categorías -->
+        <div class="seccion-titulo">
+            <h2>🛒 Nuestras Categorías</h2>
+            <p>Elige lo que más te guste</p>
+        </div>
+        
+        <div class="grid-categorias">
+            <a href="#ropa" class="categoria-card" onclick="filtrarCategoria('ropa-estilo')">
+                <div class="categoria-icono">👗</div>
+                <h3>Ropa y Estilo</h3>
+                <p>Prendas para cada ocasión</p>
+            </a>
+            <a href="#shein" class="categoria-card" onclick="filtrarCategoria('encargos-shein')">
+                <div class="categoria-icono">📦</div>
+                <h3>Encargos Shein</h3>
+                <p>Lo último en moda internacional</p>
+            </a>
+            <a href="#maquillaje" class="categoria-card" onclick="filtrarCategoria('maquillaje')">
+                <div class="categoria-icono">💄</div>
+                <h3>Maquillaje</h3>
+                <p>Belleza y cuidado personal</p>
+            </a>
+            <a href="#accesorios" class="categoria-card" onclick="filtrarCategoria('accesorios')">
+                <div class="categoria-icono">💍</div>
+                <h3>Accesorios</h3>
+                <p>Llaveros, bisutería y más</p>
+            </a>
+        </div>
+
+        <!-- Productos -->
+        <div class="seccion-titulo">
+            <h2>✨ Productos Destacados</h2>
+            <p id="resultados-categoria">Mostrando todas las categorías</p>
+        </div>
+        
+        <div class="grid-productos" id="grid-productos">
+            <!-- Se llena con JavaScript -->
+            <div class="sin-productos">
+                <div class="icono">📸</div>
+                <h3>¡Próximamente!</h3>
+                <p>Estamos preparando las fotos de nuestros productos.</p>
+                <p>Mientras tanto, puedes ver nuestro catálogo en el enlace de arriba.</p>
+            </div>
+        </div>
+        
+        <!-- Banner de Adsterra (sutil) -->
+        <div class="ad-banner">
+            <!-- AQUÍ PEGARÁS EL CÓDIGO DE ADSTERRA NATIVE BANNER -->
+            <p style="color:#ccc;">Espacio publicitario</p>
+        </div>
+        
+    </div>
+
+    <!-- Sobre PaMi -->
+    <section class="sobre-pami">
+        <h2>💜 Sobre PaMi</h2>
+        <p>Somos una tienda online creada con dedicación y compromiso, donde la calidad y el buen gusto van primero. Creemos que mereces lo mejor, por eso trabajamos para ofrecerte variedad, buenos precios y una atención cercana y confiable.</p>
+        
+        <div class="info-contacto">
+            <div class="info-item">
+                <strong>📞 Teléfonos</strong>
+                +53 56275010<br>+53 53826041
+            </div>
+            <div class="info-item">
+                <strong>📍 Recogida</strong>
+                Villa Panamericana<br>Universidad La Cujae
+            </div>
+            <div class="info-item">
+                <strong>🚚 Envíos</strong>
+                Mensajería a toda<br>La Habana
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <a href="#">PaMi</a> | Lo mereces todo 💜</p>
+        <p style="margin-top:10px;">
+            <a href="https://chat.whatsapp.com/D2OcpfzlLZPAPFM3AFDB7F?mode=gi_t" target="_blank">📩 Únete a nuestro grupo de WhatsApp</a>
+        </p>
+        <p style="margin-top:10px; font-size:12px; color:#999;">
+            Hecho con 💜 desde La Habana, Cuba
+        </p>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5356275010" class="whatsapp-flotante" target="_blank" title="¡Escríbeme a WhatsApp!">
+        💬
+    </a>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    
+    <!-- Aquí irá el código de Adsterra (Native Banner) al final -->
+    
+</body>
+</html>
